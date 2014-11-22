@@ -1,0 +1,38 @@
+grammar TimeRange
+  rule expression
+    day_range sep time sep repeat
+  end
+
+  rule day_range
+    day (end_day / second_day)* <DayRange>
+  end
+
+  rule end_day
+    space? '-' space? day
+  end
+
+  rule second_day
+    space 'AND' space day
+  end
+
+  rule day
+    'MONDAY' / 'TUESDAY' / 'WEDNESDAY' /
+    'THURSDAY' / 'FRIDAY' / 'SATURDAY' / 'SUNDAY'
+  end
+
+  rule time
+    [^/]+ <TimeRange>
+  end
+
+  rule repeat
+    [^/]+ <Repeat>
+  end
+
+  rule sep
+    space? '/' space?
+  end
+
+  rule space
+    [\s]+
+  end
+end

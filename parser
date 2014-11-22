@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'treetop'
+require "./nodes.rb"
+
+Treetop.load(File.expand_path('../timerange.tt', __FILE__))
+$parser = TimeRangeParser.new
+
+def parse(input)
+  tree = $parser.parse(input)
+  if tree.nil?
+    puts "Unable to parse: `#{input}`"
+  else
+    puts tree.inspect
+  end
+end
+
+if ARGV.size > 0
+  ARGV.each { |input| parse(input) }
+else
+  loop do
+    print "> "
+    input = STDIN.readline.chomp
+    break if input == "quit"
+    parse(input)
+  end
+end

@@ -1,0 +1,15 @@
+Quick treetop example for parsing date ranges.
+
+You can run 'parser' and either provide examples on the command line
+(you might need to double quote these to avoid upsetting your shell)
+or type them in at a prompt if no command line args given.
+
+The parser checks that there are three parts separated by slashes. Only
+the day part is validated and it currently accepts a single day, a range
+of <day>-<day> and a two days joined by 'AND'. It currently accepts invalid
+ranges where the same day repeats (e.g., 'MONDAY-MONDAY').
+
+Filling in times and repeats is left as an exercise for the reader :-)
+
+It might make sense adding some new node classes if you intend to use
+the parsed result for anything other than validation.
